@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,12 +22,12 @@ public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
-	@Column(name = "rua")
-	private String rua;
+	@Column(name = "logradouro")
+	private String logradouro;
 
 	@NotNull
 	@Column(name = "numero")
@@ -45,6 +47,14 @@ public class Endereco implements Serializable {
 	@Column(name = "cidade")
 	private String cidade;
 
+	@OneToOne
+	@JoinColumn(name = "agencia_id")
+	private Agencia agencia;
+
+	@OneToOne
+	@JoinColumn(name = "pessoa_id")
+	private Pessoa pessoa;
+
 	public Long getId() {
 		return id;
 	}
@@ -53,12 +63,12 @@ public class Endereco implements Serializable {
 		this.id = id;
 	}
 
-	public String getRua() {
-		return rua;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getNumero() {
@@ -67,22 +77,6 @@ public class Endereco implements Serializable {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
 	}
 
 	public String getBairro() {
@@ -101,10 +95,43 @@ public class Endereco implements Serializable {
 		this.cidade = cidade;
 	}
 
+	public Agencia getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(Agencia agencia) {
+		this.agencia = agencia;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public Endereco() {
+		super();
+	}
+
+	public Endereco(Long id, @NotNull String logradouro, @NotNull String numero, @NotNull String bairro,
+			@NotNull String cidade, Agencia agencia, Pessoa pessoa) {
+		super();
+		this.id = id;
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.agencia = agencia;
+		this.pessoa = pessoa;
+	}
+
 	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", rua=" + rua + ", numero=" + numero + ", complemento=" + complemento + ", cep="
-				+ cep + ", bairro=" + bairro + ", cidade=" + cidade + "]";
+		return "Endereco [id=" + id + ", logradouro=" + logradouro + ", numero=" + numero + ", complemento="
+				+ complemento + ", cep=" + cep + ", bairro=" + bairro + ", cidade=" + cidade + ", agencia=" + agencia
+				+ ", pessoa=" + pessoa + "]";
 	}
 
 	@Override

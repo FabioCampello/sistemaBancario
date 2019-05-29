@@ -3,12 +3,12 @@ package com.sistema.bancario.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,7 +25,7 @@ public class Agencia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
@@ -37,13 +37,11 @@ public class Agencia implements Serializable {
 	@Column(name = "codigo", unique = true)
 	private String codigo;
 
-	@OneToOne
-	@JoinColumn(name = "endereco_id")
+	@OneToOne(mappedBy = "agencia", cascade = CascadeType.ALL)
 	private Endereco endereco;
 
-	@OneToMany
-	@JoinColumn(name = "agencia_id")
-	private List<ContaCorrente> contaCorrente;
+	@OneToMany(mappedBy = "agencia", cascade = CascadeType.ALL)
+	private List<Conta> conta;
 
 	public Long getId() {
 		return id;
@@ -77,18 +75,30 @@ public class Agencia implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public List<ContaCorrente> getContaCorrente() {
-		return contaCorrente;
+	public List<Conta> getConta() {
+		return conta;
 	}
 
-	public void setContaCorrente(List<ContaCorrente> contaCorrente) {
-		this.contaCorrente = contaCorrente;
+	public void setConta(List<Conta> conta) {
+		this.conta = conta;
+	}
+
+	public Agencia() {
+		super();
+	}
+
+	public Agencia(Long id, @NotNull String nome, @NotNull @Size(min = 5, max = 5) String codigo, Endereco endereco) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.codigo = codigo;
+		this.endereco = endereco;
 	}
 
 	@Override
 	public String toString() {
-		return "Agencia [id=" + id + ", nome=" + nome + ", codigo=" + codigo + ", endereco=" + endereco
-				+ ", contaCorrente=" + contaCorrente + "]";
+		return "Agencia [id=" + id + ", nome=" + nome + ", codigo=" + codigo + ", endereco=" + endereco + ", conta="
+				+ conta + "]";
 	}
 
 	@Override
