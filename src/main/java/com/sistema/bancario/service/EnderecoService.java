@@ -30,4 +30,8 @@ public class EnderecoService {
 		enderecoRepository.deleteById(id);
 	}
 
+	public Endereco findByAgenciaId(Long agenciaId) {
+		return enderecoRepository.findByAgenciaId(agenciaId);
+	}
+
 }

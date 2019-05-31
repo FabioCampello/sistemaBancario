@@ -64,5 +64,16 @@ public class EnderecoController {
 			error.printStackTrace();
 		}
 	}
+	
+	@RequestMapping(value = "findByAgenciaId/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Endereco> findByAgenciaId(@PathVariable("id") Long id) {
+		ResponseEntity<Endereco> endereco = null;
+		try {
+			endereco = new ResponseEntity<Endereco>(enderecoService.findByAgenciaId(id), HttpStatus.OK);
+		} catch (Exception error) {
+			error.printStackTrace();
+		}
+		return endereco;
+	}
 
 }

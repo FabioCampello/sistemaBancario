@@ -30,4 +30,14 @@ public class AgenciaService {
 		agenciaRepository.deleteById(id);
 	}
 
+	public Agencia findByCodigo(String codigo) {
+		Agencia agencia = null;
+		try {
+			agencia = agenciaRepository.findByCodigo(codigo);
+		} catch (NullPointerException err) {
+			err.printStackTrace();
+		}
+		return agencia;
+	}
+
 }

@@ -65,4 +65,15 @@ public class AgenciaController {
 		}
 	}
 
+	@RequestMapping(value = "findByCodigo/{codigo}", method = RequestMethod.GET)
+	public ResponseEntity<Agencia> findByCodigo(@PathVariable("codigo") String codigo) {
+		ResponseEntity<Agencia> ag = null;
+		try {
+			ag = new ResponseEntity<Agencia>(agenciaService.findByCodigo(codigo), HttpStatus.OK);
+		} catch (Exception error) {
+			error.printStackTrace();
+		}
+		return ag;
+	}
+
 }

@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.sistema.bancario.model.Agencia;
 
 public interface AgenciaRepository extends JpaRepository<Agencia, Long> {
+	
+	Agencia findByCodigo(String codigo);
 
 }
