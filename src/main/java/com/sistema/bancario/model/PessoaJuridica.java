@@ -31,6 +31,16 @@ public class PessoaJuridica extends Pessoa implements Serializable {
 		this.cnpj = cnpj;
 	}
 
+	public PessoaJuridica() {
+		super();
+	}
+
+	public PessoaJuridica(Long id, @NotNull String nome, @NotNull String fone, Calendar dataNascimento,
+			Endereco endereco) {
+		super(id, nome, fone, dataNascimento, endereco);
+		// TODO Auto-generated constructor stub
+	}
+
 	public PessoaJuridica(Long id, @NotNull String nome, @NotNull String fone, Calendar dataNascimento,
 			Endereco endereco, @NotNull @Size(min = 14, max = 14) String cnpj) {
 		super(id, nome, fone, dataNascimento, endereco);

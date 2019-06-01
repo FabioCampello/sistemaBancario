@@ -16,11 +16,11 @@ public class ContaCorrente extends Conta implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "limite_especial")
+	@Column(name = "limite_especial", columnDefinition = "Decimal(10,2) default '100.00'")
 	private Double limite_especial;
 
 	@NotNull
-	@Column(name = "taxa_servicos")
+	@Column(name = "taxa_servicos", columnDefinition = "Decimal(10,2) default '100.00'")
 	private Double taxa_servicos;
 
 	public Double getLimite_especial() {
@@ -37,6 +37,15 @@ public class ContaCorrente extends Conta implements Serializable {
 
 	public void setTaxa_servicos(Double taxa_servicos) {
 		this.taxa_servicos = taxa_servicos;
+	}
+
+	public ContaCorrente() {
+		super();
+	}
+
+	public ContaCorrente(Long id, @NotNull String numero, @NotNull Double saldo, @NotNull Agencia agencia,
+			@NotNull Pessoa pessoa) {
+		super(id, numero, saldo, agencia, pessoa);
 	}
 
 	public ContaCorrente(Long id, @NotNull String numero, Double saldo, @NotNull Agencia agencia,

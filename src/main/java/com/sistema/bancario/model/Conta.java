@@ -36,7 +36,7 @@ public class Conta implements Serializable {
 	private String numero;
 
 	@NotNull
-	@Column(name = "saldo")
+	@Column(name = "saldo", columnDefinition = "Decimal(10,2) default '100.00'")
 	private Double saldo;
 
 	@NotNull
@@ -89,7 +89,12 @@ public class Conta implements Serializable {
 		this.pessoa = pessoa;
 	}
 
-	public Conta(Long id, @NotNull String numero, @NotNull Double saldo, @NotNull Agencia agencia, @NotNull Pessoa pessoa) {
+	public Conta() {
+		super();
+	}
+
+	public Conta(Long id, @NotNull String numero, @NotNull Double saldo, @NotNull Agencia agencia,
+			@NotNull Pessoa pessoa) {
 		super();
 		this.id = id;
 		this.numero = numero;

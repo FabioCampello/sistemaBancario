@@ -40,15 +40,13 @@ public class Movimentacao implements Serializable {
 	private TipoMovimentacao tipoMovimentacao;
 
 	@NotNull
-	@Column(name = "valor")
+	@Column(name = "valor", columnDefinition = "Decimal(10,2) default '100.00'")
 	private Double valor;
 
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "conta_origem_id", foreignKey = @ForeignKey(name = "FK_conta_origem"))
 	private Conta contaOrigem;
 
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "conta_destino_id", foreignKey = @ForeignKey(name = "FK_conta_destino"))
 	private Conta contaDestino;
@@ -99,6 +97,10 @@ public class Movimentacao implements Serializable {
 
 	public void setContaDestino(Conta contaDestino) {
 		this.contaDestino = contaDestino;
+	}
+
+	public Movimentacao() {
+		super();
 	}
 
 	public Movimentacao(Long id, Calendar data, TipoMovimentacao tipoMovimentacao, @NotNull Double valor,

@@ -31,6 +31,15 @@ public class PessoaFisica extends Pessoa implements Serializable {
 		this.cpf = cpf;
 	}
 
+	public PessoaFisica() {
+		super();
+	}
+
+	public PessoaFisica(Long id, @NotNull String nome, @NotNull String fone, Calendar dataNascimento,
+			Endereco endereco) {
+		super(id, nome, fone, dataNascimento, endereco);
+	}
+
 	public PessoaFisica(Long id, @NotNull String nome, @NotNull String fone, Calendar dataNascimento, Endereco endereco,
 			@NotNull @Size(min = 11, max = 11) String cpf) {
 		super(id, nome, fone, dataNascimento, endereco);

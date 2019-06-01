@@ -87,6 +87,13 @@ public class Agencia implements Serializable {
 		super();
 	}
 
+	public Agencia(Long id, @NotNull String nome, @NotNull @Size(min = 5, max = 5) String codigo) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.codigo = codigo;
+	}
+
 	public Agencia(Long id, @NotNull String nome, @NotNull @Size(min = 5, max = 5) String codigo, Endereco endereco) {
 		super();
 		this.id = id;

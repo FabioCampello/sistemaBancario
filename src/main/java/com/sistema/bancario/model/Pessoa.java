@@ -91,6 +91,10 @@ public class Pessoa implements Serializable {
 		this.endereco = endereco;
 	}
 
+	public Pessoa() {
+		super();
+	}
+
 	public Pessoa(Long id, @NotNull String nome, @NotNull String fone, Calendar dataNascimento, Endereco endereco) {
 		super();
 		this.id = id;
