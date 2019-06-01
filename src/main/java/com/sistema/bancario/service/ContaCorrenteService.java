@@ -29,5 +29,17 @@ public class ContaCorrenteService {
 	public void deleteById(Long id) {
 		contaCorrenteRepository.deleteById(id);
 	}
+	
+	public ContaCorrente findByNumero(String num) {
+		return contaCorrenteRepository.findByNumero(num);
+	} 
+	
+	public ContaCorrente findFirstByOrderById() {
+		return contaCorrenteRepository.findFirstByOrderById();
+	}
+	
+	public ContaCorrente findFirstByOrderByIdDesc() {
+		return contaCorrenteRepository.findFirstByOrderByIdDesc();
+	}
 
 }

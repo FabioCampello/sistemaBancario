@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sistema.bancario.model.Cliente;
+import com.sistema.bancario.model.Pessoa;
 import com.sistema.bancario.service.ClienteService;
 
 @CrossOrigin(origins = "*")
@@ -24,10 +24,10 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@RequestMapping(value = "updateSaveCliente", method = RequestMethod.PUT)
-	public ResponseEntity<Cliente> updateSaveCliente(@RequestBody Cliente cliente) {
-		ResponseEntity<Cliente> cli = null;
+	public ResponseEntity<Pessoa> updateSaveCliente(@RequestBody Pessoa cliente) {
+		ResponseEntity<Pessoa> cli = null;
 		try {
-			cli = new ResponseEntity<Cliente>(clienteService.updateSaveCliente(cliente), HttpStatus.OK);
+			cli = new ResponseEntity<Pessoa>(clienteService.updateSaveCliente(cliente), HttpStatus.OK);
 		} catch (Exception error) {
 			error.printStackTrace();
 		}
@@ -35,10 +35,10 @@ public class ClienteController {
 	}
 
 	@RequestMapping(value = "findById/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Cliente> findById(@PathVariable("id") Long id) {
-		ResponseEntity<Cliente> cli = null;
+	public ResponseEntity<Pessoa> findById(@PathVariable("id") Long id) {
+		ResponseEntity<Pessoa> cli = null;
 		try {
-			cli = new ResponseEntity<Cliente>(clienteService.findById(id), HttpStatus.OK);
+			cli = new ResponseEntity<Pessoa>(clienteService.findById(id), HttpStatus.OK);
 		} catch (Exception error) {
 			error.printStackTrace();
 		}
@@ -46,10 +46,10 @@ public class ClienteController {
 	}
 
 	@RequestMapping(value = "findAll", method = RequestMethod.GET)
-	public ResponseEntity<List<Cliente>> findAll() {
-		ResponseEntity<List<Cliente>> list = null;
+	public ResponseEntity<List<Pessoa>> findAll() {
+		ResponseEntity<List<Pessoa>> list = null;
 		try {
-			list = new ResponseEntity<List<Cliente>>(clienteService.findAll(), HttpStatus.OK);
+			list = new ResponseEntity<List<Pessoa>>(clienteService.findAll(), HttpStatus.OK);
 		} catch (Exception error) {
 			error.printStackTrace();
 		}
